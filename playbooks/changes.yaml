@@ -1,0 +1,16 @@
+---
+- hosts: j5
+  gather_facts: true
+  connection: local
+
+  tasks:
+    - name: Change logging host
+      ios_config:
+        lines:
+          - no logging host 192.168.51.254
+          - no logging host 192.168.51.253
+          - int Gi1/0/16
+          - shut
+        host: "{{ ansible_host }}"
+        username: ansible
+        password: ansible
